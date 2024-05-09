@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+  <html lang="zxx">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>Labour Market Information System</title>
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Place favicon.ico in the root directory -->
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="assets/img/favicon/Scale Studio.jpg"
+      />
+      <!-- CSS here -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+      <link rel="stylesheet" href="assets/css/slick.css" />
+      <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+      <link rel="stylesheet" href="assets/css/default.css" />
+      <link rel="stylesheet" href="assets/css/aos.css" />
+      <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body>
+     
+      <!--  HEADER AREA -->
+      <header id="header" class="header-area">
+        <div class="container custom-container">
+          <nav class="menu-area d-flex align-items-center">
+            <div class="logo">
+              <a href="index.html"
+                ><img src="assets/img/logo/LMIS 1.png" alt="logo"
+              /></a>
+            </div>
+            <ul class="main-menu d-flex align-items-center">
+              <li>
+                <a class="active" href="javascript:void(0)">Home</a>
+                
+              </li>
+              <li>
+                <a href="javascript:void(0)">About Us</a>
+                <ul class="sub-menu">
+                  <li><a href="services.html">Services</a></li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)">Contact Us</a>
+                <ul class="sub-menu">
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="team.html">Team Members</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)">Services</a>
+                <ul class="sub-menu">
+                  <li><a href="project.html">Project</a></li>
+                  <li>
+                    <a href="project-details.html">Project Detail</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)">Login</a>
+                <ul class="sub-menu">
+                  <li><a href="blog.html">Blog</a></li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="contact.html">Sign Up</a></li>
+            </ul>
+            <div class="right-content ml-auto">
+              <div class="search-bar">
+                <img src="assets/img/logo/search.svg" alt="search logo" />
+              </div>
+  
+              <div class="sign-buttons">
+               
+                <a
+                  class="primary__button"
+                  style="background-color: #925337"
+                  href="sign-up.html"
+                >
+                 Logout
+                </a>
+              </div>
+            </div>
+            <div class="hamburger-menu">
+              <span></span><span></span><span></span>
+            </div>
+          </nav>
+          <aside>
+            <div class="sidebar-menu">
+              <div class="close-sidebar"><span></span><span></span></div>
+              <div class="logo">
+                <a href="index.html">
+                  <img src="assets/img/logo/LMIS 1.png" alt="logo" />
+                </a>
+              </div>
+              <form class="asidesearch-bar">
+                <input type="text" name="search" />
+                <img src="assets/img/logo/search.svg" alt="search logo" />
+              </form>
+              <ul class="main-menu">
+                <li>
+                  <a class="active" href="index.html">Home</a>
+                </li>
+                <li><a href="services.html">About Us</a></li>
+                <li><a href="about-us.html">Contact Us</a></li>
+                <li><a href="project.html">Services</a></li>
+                <li>
+                  <a class="primary__button" href="login.html">Login</a>
+                </li>
+                <li>
+                  <a class="primary__button" href="signup.html">Sign Up</a>
+                </li>
+              </ul>
+            </div>
+            <div class="overlay"></div>
+          </aside>
+        </div>
+        <div class="search-box">
+          <div class="search-form">
+            <form action="#">
+              <input type="text" placeholder="Enter Your Kayword" />
+              <button type="submit">
+                <img src="assets/img/logo/search.svg" alt="search logo" />
+              </button>
+            </form>
+          </div>
+          <a class="search-close" href="javascript:void(0)"
+            ><i class="fas fa-times"></i
+          ></a>
+        </div>
+      </header>
+
+
+
+
+  <body>
+    <div class="background-container">
+      <form id="postJobForm">
+        <h1 style="font-size: 48px;">Post a Job</h1>
+        <label for="job_title">Job Title:</label><br />
+        <input type="text" id="job_title" name="job_title" required /><br />
+
+        <label for="job_description">Job Description:</label><br />
+        <textarea
+          id="job_description"
+          name="job_description"
+          required
+        ></textarea
+        ><br />
+
+        <label for="city">City:</label><br />
+        <select id="city" name="city" required>
+          <option value="" disabled selected>Select a city</option></select
+        ><br />
+
+        <label for="job_employment_type">Employment Type:</label><br />
+        <input
+          type="text"
+          id="job_employment_type"
+          name="job_employment_type"
+          required
+        /><br />
+
+        <label for="job_qualification">Qualification:</label><br />
+        <input
+          type="text"
+          id="job_qualification"
+          name="job_qualification"
+          required
+        /><br />
+
+        <label for="job_work_preference">Work Preference:</label><br />
+        <input
+          type="text"
+          id="job_work_preference"
+          name="job_work_preference"
+          required
+        /><br />
+
+        <label for="age">Age:</label><br />
+        <input type="number" id="age" name="age" required /><br />
+
+        <label for="experience">Experience:</label><br />
+        <input type="text" id="experience" name="experience" required /><br />
+
+        <label for="gender">Gender:</label><br />
+        <input type="text" id="gender" name="gender" required /><br />
+
+        <label for="salary">Salary:</label><br />
+        <input type="number" id="salary" name="salary" required /><br />
+
+        <button type="submit">Post Job</button>
+      </form>
+    </div>
+    <!-- Include Axios library for making HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      async function populateCities() {
+        try {
+          const response = await axios.get(
+            "https://us-central1-lmis-f3fb0.cloudfunctions.net/app/getCities"
+          ); // Assuming your backend endpoint is /getCities
+          const cities = response.data;
+          const cityDropdown = document.getElementById("city");
+
+          // Clear existing options
+          cityDropdown.innerHTML =
+            '<option value="" disabled selected>Select a city</option>';
+
+          // Add fetched cities as options
+          cities.forEach((city) => {
+            const option = document.createElement("option");
+            option.text = city;
+            option.value = city;
+            cityDropdown.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching cities:", error.message);
+        }
+      }
+//       const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+// if (userDetails && userDetails.token) {
+//     // Proceed with sending the request with the token
+// } else {
+//     // Handle the case where userDetails or token is missing
+//     console.error("User details or token not found in local storage");
+//     // Optionally, redirect the user to a login page or display an error message
+// }
+
+      // Populate cities dropdown when the page loads
+      window.onload = populateCities;
+
+      document.getElementById("postJobForm").addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  // Retrieve the token from local storage
+  const token = localStorage.getItem('userToken');
+
+  const formData = new FormData(this);
+  const data = {};
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  try {
+    // Include token in the request headers
+    const response = await axios.post(
+      "https://us-central1-lmis-f3fb0.cloudfunctions.net/app/postjob",
+      data,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    if (response.status === 200) {
+      alert("Job posted successfully");
+      window.location.href = "postedjobs.html";
+    } else {
+      alert("Failed to post job");
+    }
+  } catch (error) {
+    console.error("Error posting job:", error.message);
+    alert("An error occurred while posting the job.");
+  }
+});
+
+    </script>
+  </body>
+</html>

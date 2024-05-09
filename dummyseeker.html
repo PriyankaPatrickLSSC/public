@@ -1,0 +1,27 @@
+app.post('/applyJob/:jobId', authenticateJobSeeker, async (req, res) => {
+    try {
+      const jobId = req.params.jobId;
+      const jobRef = firestore.collection('jobs').doc(jobId);
+  
+      const jobSnapshot = await jobRef.get();
+      if (!jobSnapshot.exists) {
+        return res.status(404).json({ error: 'Job not found' });
+      }
+  
+      // Assuming you have a 'applications' collection in Firestore
+      const applicationsRef = firestore.collection('applications');
+      const applicationData = {
+        jobId,
+        applicantId: req.user.uid,
+        appliedAt: new Date(),
+      };
+  
+      await applicationsRef.add(applicationData);
+  
+      return res.status(200).json({ message: 'Application submitted successfully' });
+    } catch (error) {
+      console.error('Error in applyJob function:', error);
+      return res.status(500).json({ error: 'Failed to submit application' });
+    }
+  });
+  

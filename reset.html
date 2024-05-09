@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+</head>
+<body>
+    <form id="passwordResetForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Reset Password</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="client.js"></script>
+
+<script>document.getElementById("passwordResetForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+
+    try {
+        // Send request to server's password-reset endpoint
+        const response = await axios.post(" https://us-central1-lmis-f3fb0.cloudfunctions.net/app/password-reset", { email });
+
+        // Display success message to user
+        document.getElementById("message").textContent = response.data.message;
+        document.getElementById("message").style.color = "green";
+    } catch (error) {
+        // Display error message to user
+        console.error("Error resetting password:", error);
+        document.getElementById("message").textContent = "An error occurred while resetting your password.";
+        document.getElementById("message").style.color = "red";
+    }
+});</script>
+    
+</body>
+</html>

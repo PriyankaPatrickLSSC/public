@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Contact Us</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+    <style>
+      #loginButton,
+      #signupButton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      #signupButton {
+        background-color: #b87250;
+      }
+
+      .carousel-caption.move-left {
+        margin-left: 10%;
+        text-align: left;
+      }
+
+      .count-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .count-item {
+        text-align: center;
+        flex: 1 1 200px; /* Adjust the width of count items */
+      }
+
+      .count-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .count-label {
+        font-size: 16px;
+        color: #666;
+      }
+
+      .text-container p {
+        font-family: montserrat;
+        font-weight: 600;
+        font-size: 18px;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .contact-container {
+        position: relative;
+      }
+      .white-container {
+        position: absolute;
+        top: 50%;
+        right: 15%; /* Adjust right distance from the background image */
+        transform: translateY(-50%);
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Adjust opacity as needed */
+        padding: 40px; /* Increase padding for better fit */
+        border-radius: 10px;
+        width: 40%; /* Set width to fit the screen */
+        max-width: 600px; /* Limit maximum width */
+      }
+
+      @media (max-width: 768px) {
+        .carousel-caption.move-left {
+          margin-left: 0;
+          text-align: center;
+        }
+
+        .count-item {
+          flex-basis: calc(50% - 20px); /* Two items per row on small screens */
+        }
+
+        .white-container {
+          width: 90%; /* Adjust width for small screens */
+          right: 5%; /* Adjust right distance from the background image for small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="image/LMIS.png"
+            alt="Leather Sector Skill Council"
+            height="70px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">HOME</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                SERVICES
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">Employee Data Management</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    >Time and Attendance Tracking</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Performance Management</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Training and Development</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    >Recruitment and Onboarding</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CONTACT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">ABOUT US</a>
+            </li>
+          </ul>
+        </div>
+
+        <button id="loginButton" onclick="redirectToSignin()">Login</button>
+        <button id="signupButton" onclick="redirectToSignup()">Sign Up</button>
+      </div>
+    </nav>
+
+    <div class="container text-center">
+      <!-- Added a container with text-center class for center alignment -->
+      <img src="image/contact.png" class="img-fluid" alt="..." />
+
+      <div class="white-container">
+        <!-- White container overlaying the background image -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 offset-md-4">
+              <!-- Adjusted offset to align to the right -->
+              <!-- Contact Form -->
+              <form id="contactForm">
+                <div class="mb-3">
+                  <label for="fullName" class="form-label">Your Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    name="fullName"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function redirectToSignin() {
+        window.location.href = "signin.html";
+      }
+
+      function redirectToSignup() {
+        window.location.href = "signup.html";
+      }
+
+      // Add an event listener to the form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent default form submission behavior
+
+          // Get form data
+          const formData = new FormData(this);
+          const fullName = formData.get("fullName");
+          const email = formData.get("email");
+          const message = formData.get("message");
+
+          // Create a JSON object with form data
+          const formDataJson = {
+            fullName,
+            email,
+            message,
+          };
+
+          // Send form data to the server
+          try {
+            const response = await fetch(
+              " https://us-central1-lmis-f3fb0.cloudfunctions.net/app/submit-contact-form",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formDataJson),
+              }
+            );
+
+            if (response.ok) {
+              const responseData = await response.json();
+              alert("Form submitted successfully!"); // Show success message
+              console.log("Contact ID:", responseData.id); // Log the ID of the created document
+              // Optionally, you can redirect the user to another page after successful form submission
+              // window.location.href = '/success.html';
+            } else {
+              console.error("Failed to submit form:", response.statusText);
+              alert("Failed to submit form. Please try again later.");
+            }
+          } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("Failed to submit form. Please try again later.");
+          }
+        });
+    </script>
+  </body>
+</html>

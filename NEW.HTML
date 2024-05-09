@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form</title>
+<!-- Add Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.1/firebase-firestore.js"></script>
+</head>
+<body>
+<div class="outer-container">
+  <div class="container">
+    <h1>Add a CV for the employer</h1>
+    <br /><br />
+    <form id="jobApplicationForm">
+      <label for="cvUpload">Upload CV:</label>
+      <input
+        type="file"
+        id="cvUpload"
+        name="cvUpload"
+        style="display: none"
+      />
+      <label for="cvUpload" class="upload-label">Select File</label>
+      <span id="selectedFileName"></span>
+
+      <label for="applyWithoutCV">Apply without CV:</label>
+      <input
+        type="checkbox"
+        id="applyWithoutCV"
+        name="applyWithoutCV"
+      /><br /><br /><br />
+
+      <label class="dropdown-label" for="previousEmployee"
+        >Have you worked as an employee before?</label
+      >
+      <select
+        id="previousEmployee"
+        name="previousEmployee"
+        onchange="toggleFields()"
+      >
+        <option value="no">No</option>
+        <option value="yes">Yes</option></select
+      ><br /><br />
+
+      <div id="employeeFields">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" /><br /><br />
+
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" /><br /><br />
+
+        <label for="experience">Experience:</label>
+        <input type="text" id="experience" name="experience" /><br /><br />
+      </div>
+
+      <button type="button" onclick="submitForm()" class="upload-btn">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Initialize Firebase with your project config
+  const firebaseConfig = {
+  apiKey: "AIzaSyBupJ6WVoUv818heRupAiNA4aRT6n--oe0",
+  authDomain: "lmis-f3fb0.firebaseapp.com",
+  projectId: "lmis-f3fb0",
+  storageBucket: "lmis-f3fb0.appspot.com",
+  messagingSenderId: "617956268569",
+  appId: "1:617956268569:web:2aedaf3162ba98091f2888",
+  measurementId: "G-F2N05TD4S3"
+};
+  firebase.initializeApp(firebaseConfig);
+
+  // Get references to Firebase Storage and Firestore
+  var storage = firebase.storage();
+  var firestore = firebase.firestore();
+
+  // Function to handle file upload
+  function handleFileUpload(file) {
+    var storageRef = storage.ref('cv/' + file.name);
+    storageRef.put(file).then(function(snapshot) {
+      console.log('File uploaded successfully');
+      storageRef.getDownloadURL().then(function(url) {
+        // Store download URL and other form details in Firestore
+        var jobApplicationForm = document.getElementById('jobApplicationForm');
+        var formData = new FormData(jobApplicationForm);
+        formData.append('cvUrl', url); // Add CV download URL to form data
+        // Save form data to Firestore
+        firestore.collection('applications').add(Object.fromEntries(formData)).then(function(docRef) {
+          console.log('Form data saved with ID: ', docRef.id);
+          // Redirect or show success message
+        }).catch(function(error) {
+          console.error('Error saving form data: ', error);
+        });
+      }).catch(function(error) {
+        console.error('Error getting download URL: ', error);
+      });
+    }).catch(function(error) {
+      console.error('Error uploading file: ', error);
+    });
+  }
+
+  // Function to handle form submission
+  function submitForm() {
+    var cvUploadInput = document.getElementById('cvUpload');
+    var file = cvUploadInput.files[0];
+    if (file) {
+      handleFileUpload(file);
+    } else {
+      console.error('No file selected');
+    }
+  }
+</script>
+</body>
+</html>
