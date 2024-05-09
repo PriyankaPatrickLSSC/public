@@ -7022,7 +7022,7 @@ aside,
   position: absolute;
   bottom: -28px;
   left: 45px;
-}
+}bannerArea__title
 
 .breadcrumArea .breadcrumb-wrapper .breadcrumb {
   -webkit-box-align: center;
@@ -12000,3 +12000,8 @@ label {
   margin-top: -5px;
 }
 
+/* Add margin or padding to input fields */
+.input-with-label input,
+.input-with-label textarea {
+    margin-bottom: 20px; /* Adjust the value to increase or decrease distance between fields */
+}
